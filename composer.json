@@ -3,7 +3,8 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Turker\\Devops\\": "src/"
+            "Turker\\Devops\\": "src/",
+            "Turker\\Devops\\Tests": "tests"
         }
     },
     "authors": [
