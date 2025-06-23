@@ -29,9 +29,11 @@
                 "stop-on-failure": ["pre-push"]
             },
             "pre-commit": [
+                "echo pre-commit",
                 "vendor/bin/phpcb"
             ],
             "pre-push": [
+                "echo pre-push",
                 "vendor/bin/phpcbf",
                 "vendor/bin/phpunit",
                 "vendor/bin/phpstan"
