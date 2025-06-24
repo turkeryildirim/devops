@@ -21,7 +21,8 @@
         "brainmaestro/composer-git-hooks": "^3.0",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^10.5",
-        "squizlabs/php_codesniffer": "^3.13"
+        "squizlabs/php_codesniffer": "^3.13",
+        "phpcompatibility/php-compatibility": "^9.3"
     },
     "scripts": {
         "post-install-cmd": "cghooks add --ignore-lock",
@@ -36,7 +37,7 @@
                 "echo PHPCBF started",
                 "vendor/bin/phpcbf",
                 "echo PHPSTAN started",
-                "vendor/bin/phpstan"
+                "vendor/bin/phpstan --no-progress --error-format=checkstyle > build/logs/phpstan.xml"
             ],
             "pre-push": [
                 "echo PHPUNIT started",
