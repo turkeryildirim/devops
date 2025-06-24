@@ -2,9 +2,9 @@
 
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
          cacheDirectory=".phpunit.cache"
          displayDetailsOnTestsThatTriggerWarnings="true"
-         requireCoverageMetadata="true"
 >
     <php>
         <ini name="display_errors" value="1" />
@@ -25,9 +25,6 @@
     </source>
 
     <coverage>
-        <include>
-            <directory suffix=".php">src</directory>
-        </include>
         <report>
             <html outputDirectory="build/coverage/html" />
             <cobertura outputFile="build/coverage/cobertura.xml"/>
