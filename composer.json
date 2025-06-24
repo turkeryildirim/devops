@@ -33,16 +33,14 @@
                 "stop-on-failure": ["pre-push"]
             },
             "pre-commit": [
-                "echo PHPCS started",
-                "vendor/bin/phpcs"
-            ],
-            "pre-push": [
                 "echo PHPCBF started",
                 "vendor/bin/phpcbf",
-                "echo PHPUNIT started",
-                "vendor/bin/phpunit",
                 "echo PHPSTAN started",
                 "vendor/bin/phpstan"
+            ],
+            "pre-push": [
+                "echo PHPUNIT started",
+                "vendor/bin/phpunit"
             ]
          }
      }
