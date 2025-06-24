@@ -33,7 +33,7 @@
                 "stop-on-failure": ["pre-push"]
             },
             "pre-commit": [
-                "echo pre-commit",
+                "echo pre-committ",
                 "vendor/bin/phpcs",
                 "vendor/bin/phpcbf",
                 "vendor/bin/phpunit",
