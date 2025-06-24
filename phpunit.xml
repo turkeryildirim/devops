@@ -4,6 +4,12 @@
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
          displayDetailsOnTestsThatTriggerWarnings="true"
 >
+    <php>
+        <ini name="display_errors" value="1" />
+        <ini name="error_reporting" value="-1" />
+        <server name="APP_ENV" value="test" force="true" />
+    </php>
+
     <testsuites>
         <testsuite name="Devops">
             <directory>tests</directory>
