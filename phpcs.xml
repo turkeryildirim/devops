@@ -12,6 +12,10 @@
     <arg name="parallel" value="75"/>
     <arg value="np"/>
 
+    <ruleset name="default">
+        <arg name="cache" value="build/cache/codesniffer.phpcs" />
+    </ruleset>
+
     <rule ref="PHPCompatibility"/>
 
     <rule ref="PSR12"/>
