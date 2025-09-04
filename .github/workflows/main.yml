@@ -25,7 +25,7 @@ jobs:
       - name: Create zip
         run: |
           ZIP_NAME=${GITHUB_REPOSITORY##*/}.zip
-          zip -r "$ZIP_NAME" .
+          zip -r "$ZIP_NAME" . -x ".git/*" ".github/*"
 
       # 3. Ana X repo'yu checkout et
       - name: Checkout main X repo
