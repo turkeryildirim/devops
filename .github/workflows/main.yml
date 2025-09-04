@@ -1,0 +1,54 @@
+name: Build and Push Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_push:
+    concurrency:
+      group: ${{ github.ref }}-build_and_push
+      cancel-in-progress: true
+
+    if: >
+          github.event_name == 'push' &&
+          contains(github.event.head_commit.message, '#build')
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Repo kendi kodunu checkout et
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      # 2. Zip oluştur
+      - name: Create zip
+        run: |
+          ZIP_NAME=${GITHUB_REPOSITORY##*/}.zip
+          zip -r "$ZIP_NAME" .
+
+      # 3. Ana X repo'yu checkout et
+      - name: Checkout main X repo
+        uses: actions/checkout@v3
+        with:
+          repository: turkeryildirim/api-sample
+          token: ${{ vars.X_REPO_TOKEN }}
+          path: x-repo
+
+      # 4. Zip'i repoya kopyala
+      - name: Copy zip to repo
+        run: |
+          ZIP_NAME=${GITHUB_REPOSITORY##*/}.zip
+          TARGET_DIR=x-repo/docker
+          mkdir -p "$TARGET_DIR"
+          cp "$ZIP_NAME" "$TARGET_DIR/"
+
+      # 5. Commit ve push
+      - name: Commit and Push to X repo
+        run: |
+          cd x-repo
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add docker/"$ZIP_NAME"
+          git commit -m "Update $ZIP_NAME [skip ci]" || echo "No changes to commit"
+          git push
